@@ -25,12 +25,14 @@ export const NewMovie: React.FC<Props> = ({ onAdd }) => {
     setImdbId('');
   };
 
+  const emptyCheck = () => {
+    return !title.trim() || !imgUrl.trim() || !imdbUrl.trim() || !imdbId.trim();
+  };
+
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
 
-    if (!title || !imgUrl || !imdbUrl || !imdbId) {
-      return;
-    }
+    emptyCheck();
 
     onAdd({
       title,
@@ -93,7 +95,7 @@ export const NewMovie: React.FC<Props> = ({ onAdd }) => {
             type="submit"
             data-cy="submit-button"
             className="button is-link"
-            disabled={!title || !imgUrl || !imdbUrl || !imdbId}
+            disabled={emptyCheck()}
           >
             Add
           </button>
