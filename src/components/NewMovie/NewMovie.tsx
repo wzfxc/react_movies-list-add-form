@@ -32,7 +32,9 @@ export const NewMovie: React.FC<Props> = ({ onAdd }) => {
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
 
-    emptyCheck();
+    if (emptyCheck()) {
+      return;
+    }
 
     onAdd({
       title,
